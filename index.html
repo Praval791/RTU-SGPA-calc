@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CGPA Calculator</h1>
+
+    <div id="subjectInputs"></div>
+
+    <button onclick="calculateCGPA()">Calculate CGPA</button>
+
+    <div id="result"></div>
+
+    <script>
+        // Define grade points
+        const gradePoints = {
+            'a++': 10, 'a+': 9, 'a': 8.5, 'b+': 8, 'b': 7.5,
+            'c+': 7, 'c': 6.5, 'd+': 6, 'd': 5.5, 'e+': 5, 'e': 4, 'f': 0
+        };
+
+        // Subject credits
+        const credits = {
+            'Digital Image Processing': 2, 'Machine Learning': 3, 'Information Security Systems': 2, 'Computer Architecture and Organization': 3, 'Artificial Intelligence': 2,
+            'Cloud Computing': 3, 'DIP LAB': 1.5, 'ML LAB': 1.5, 'Python LAB': 1.5,
+            'MAD Lab': 1.5, 'Distributed Systems': 2, 'Social Outreach, D&RCA': 0.5
+        };
+
+        // Function to dynamically render subject inputs
+        function renderSubjectInputs() {
+            const subjectInputsContainer = document.getElementById('subjectInputs');
+            for (const subject in credits) {
+                const label = document.createElement('label');
+                console.log(subject);
+                label.textContent = `${subject} (Credits: ${credits[subject]})`;
+
+                const select = document.createElement('select');
+                select.id = subject;
+
+                // Populate options
+                for (const grade in gradePoints) {
+                    const option = document.createElement('option');
+                    option.value = grade.toLowerCase();
+                    option.textContent = grade;
+                    select.appendChild(option);
+                }
+
+                subjectInputsContainer.appendChild(label);
+                subjectInputsContainer.appendChild(select);
+            }
+        }
+
+        // Initialize subject inputs
+        renderSubjectInputs();
+
+        // Function to calculate CGPA
+        function calculateCGPA() {
+            let totalCredits = 0;
+            let totalGradePoints = 0;
+
+            // Loop through each subject
+            for (const subject in credits) {
+                const gradeInput = document.getElementById(subject).value.toLowerCase();
+                const gradePoint = gradePoints[gradeInput];
+
+                if (gradePoint !== undefined) {
+                    totalGradePoints += gradePoint * credits[subject];
+                    totalCredits += credits[subject];
+                }
+            }
+
+            // Calculate CGPA
+            const cgpa = totalGradePoints / totalCredits;
+
+            // Display result
+            document.getElementById('result').innerHTML = `Your CGPA is: ${cgpa.toFixed(2)}`;
+        }
+    </script>
+</body>
+
+</html>
