@@ -50,7 +50,7 @@ function calculateSGPA() {
 
   // Loop through each subject
   for (const subject in credits) {
-    const gradeInput = document.getElementById(subject).value.toLowerCase();
+    const gradeInput = document.getElementById(subject).value.toUpperCase();
     const gradePoint = gradePoints[gradeInput];
 
     if (gradePoint !== undefined) {
