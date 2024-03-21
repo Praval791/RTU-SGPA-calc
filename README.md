@@ -92,11 +92,20 @@ This is a simple web-based SGPA calculator designed for different semesters. It 
 - **Mobile App Development Lab:** 1.5 credits
 - **Social Outreach, Discipline & Extracurricular Activities:** 0.5 credits
 
+### 7th Semester
+
+- **Environmental Engineering & Disaster Management:** 3 credits
+- **Internet Of Things:** 3 credits
+- **Internet Of Things Lab:** 2 credits
+- **Cyber Security Lab:** 2 credits
+- **Industrial Training:** 2.5 credits
+- **Seminar:** 2 credits
+- **Social Outreach, Discipline & Extracurricular Activities:** 0.5 credits
+
 ## How to Use
 
-1. Open the `index.html` file in a web browser.
-2. Select the grade for each subject from the dropdown menus based on the respective semester.
-3. Click the "Calculate SGPA" button to see the calculated SGPA.
+1. Select the grade for each subject from the dropdown menus based on the respective semester.
+2. Click the "Calculate SGPA" button to see the calculated SGPA.
 
 ## Grade Points
 
@@ -117,4 +126,4 @@ The following grade points are used for the calculation:
 
 ## Credits
 
-This SGPA calculator was created using HTML, CSS, and JavaScript. The design is simple and user-friendly. Feel free to modify the code or customize the styles based on your preferences.
+This SGPA calculator was created using HTML, CSS, and JavaScript. Feel free to modify the code or customize the styles based on your preferences.
