@@ -1,4 +1,4 @@
-# SGPA Calculator
+# [SGPA Calculator](https://praval791.github.io/RTU-SGPA-calc/)
 
 This is a simple web-based SGPA calculator designed for different semesters. It allows users to input their grades for each subject and calculates the SGPA based on predefined grade points and subject credits.
 
