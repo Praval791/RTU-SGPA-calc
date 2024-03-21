@@ -15,7 +15,7 @@ calculateButton.addEventListener("click", calculateSGPA);
 function renderSubjectInputs() {
   let credits = SemToCredits[parseInt(semesterInput.value)];
   if (!credits) {
-    alert("7th or 8th ka baki he");
+    alert("bas 8th ka baki he");
     semesterInput.value = 0;
     credits = SemToCredits[parseInt(semesterInput.value)];
   }

@@ -81,7 +81,15 @@ const credits = [
     "Mobile App Development Lab": 1.5,
     "Social Outreach, Discipline & Extracurricular Activities": 0.5,
   },
-  undefined,
+  {
+    "Environmental Engineering & Disaster Management": 3,
+    "Internet Of Things": 3,
+    "Internet Of Things Lab": 2,
+    "Cyber Security Lab": 2,
+    "Industrial Training": 2.5,
+    Seminar: 2,
+    "Social Outreach, Discipline & Extracurricular Activities": 0.5,
+  },
   undefined,
 ];
 
