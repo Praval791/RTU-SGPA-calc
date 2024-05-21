@@ -102,6 +102,15 @@ This is a simple web-based SGPA calculator designed for different semesters. It 
 - **Seminar:** 2 credits
 - **Social Outreach, Discipline & Extracurricular Activities:** 0.5 credits
 
+### 8th Semester
+
+- **Big Data Analytics:** 3 credits
+- **Big Data Analytics Lab:** 2 credits
+- **Software Testing & Validation Lab:** 1 credit
+- **Project:** 7 credits
+- **Social Outreach, Discipline & Extracurricular Activities:** 0.5 credits
+- **Disaster Management:** 3 credits
+
 ## How to Use
 
 1. Select the grade for each subject from the dropdown menus based on the respective semester.

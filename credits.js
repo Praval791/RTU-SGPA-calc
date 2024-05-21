@@ -90,7 +90,14 @@ const credits = [
     Seminar: 2,
     "Social Outreach, Discipline & Extracurricular Activities": 0.5,
   },
-  undefined,
+  {
+    "Big Data Analytics": 3,
+    "Big Data Analytics Lab": 2,
+    "Software Testing & Validation Lab": 1,
+    Project: 7,
+    "Social Outreach, Discipline & Extracurricular Activities": 0.5,
+    "Disaster Management": 3,
+  },
 ];
 
 export default credits;
