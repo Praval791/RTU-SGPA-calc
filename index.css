@@ -1,67 +1,309 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    background: #fff;
-
+:root {
+    --rich-black: #0d1b2aff;
+    --oxford-blue: #1b263bff;
+    --yinmn-blue: #415a77ff;
+    --silver-lake-blue: #778da9ff;
+    --platinum: #e0e1ddff;
 }
 
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--platinum);
+    /* Platinum */
+    color: var(--rich-black);
+    /* Rich Black */
+}
+
+/* Header styling */
 header {
-    background-color: #333;
-    padding: 15px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: var(--oxford-blue);
+    /* Oxford Blue */
+    width: "100%";
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo h1 {
-    margin: 0;
     color: #fff;
     font-size: 24px;
     font-weight: bold;
 }
 
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main container styling */
 .container {
-    max-width: 600px;
-    margin: 20px auto;
     background-color: #fff;
-    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.container:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+.semester-selection {
+    position: relative;
+    /* Ensure proper positioning */
+    margin-bottom: 20px;
+    width: 100%;
 }
 
-label {
-    display: block;
-    margin: 10px 0;
-}
-
-select,
-button {
-    padding: 10px;
+.semester-selection label {
     font-size: 16px;
+    font-weight: bold;
+    color: var(--rich-black);
+    margin-bottom: 5px;
+    display: block;
+}
+
+.semester-selection select {
+    width: 100%;
+    padding: 12px 16px;
+    /* Increase padding for better touch interaction */
+    font-size: 16px;
+    border: 2px solid var(--yinmn-blue);
+    /* Add a border */
+    border-radius: 8px;
+    appearance: none;
+    background-color: var(--platinum);
+    color: var(--rich-black);
+    outline: none;
+    cursor: pointer;
+}
+
+/* Custom select arrow */
+.semester-selection select::after {
+    content: "\25BC";
+    /* Downward arrow character */
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    /* Ensure click-through */
+}
+
+/* Hover and focus styles for select element */
+.semester-selection select:hover,
+.semester-selection select:focus {
+    border-color: var(--oxford-blue);
+    /* Change border color on hover/focus */
+}
+
+.total-credits {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--rich-black);
+
+}
+
+/* Subject inputs styling */
+.subject-inputs {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.subject-inputs label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--silver-lake-blue);
+}
+
+.subject-inputs select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+    /* Add transition for smooth effect */
 }
 
-button {
-    cursor: pointer;
-    background-color: #3498db;
+.input-container:hover label,
+.input-container:focus label {
+    color: var(--oxford-blue);
+    /* Change label color on hover */
+}
+
+/* Hover effect for subject inputs */
+.input-container select:hover,
+.input-container select:focus {
+    background-color: #f0f0f0;
+    /* Lighter background color on hover */
+}
+
+/* Button styling */
+.calculate-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
     color: #fff;
+    background-color: var(--oxford-blue);
+    /* Oxford Blue */
     border: none;
     border-radius: 4px;
+    cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #1c87c9;
+.calculate-button:hover {
+    background-color: var(--yinmn-blue);
+    /* Yinmn Blue */
 }
 
-#result {
+/* Result styling */
+.result {
     margin-top: 20px;
     font-size: 18px;
+    color: var(--oxford-blue);
+    /* Oxford Blue */
+    font-weight: bold;
+}
+
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--platinum);
+    background-color: var(--oxford-blue);
+    /* Use your preferred color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 999;
+    /* Ensure it's above other content */
+    transition: background-color 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .floating-button {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+}
+
+
+.floating-button:hover {
+    background-color: var(--yinmn-blue);
+    /* Use your preferred hover color */
+}
+
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.popup-content {
+    background-color: #fff;
+    width: 80%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--rich-black);
+}
+
+.close-popup:hover {
+    color: #ff0000;
+}
+
+.popup-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--rich-black);
+}
+
+.popup-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--silver-lake-blue);
+}
+
+.semester-selection label {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--rich-black);
+    margin-bottom: 5px;
+    display: block;
+}
+
+.popup-content input,
+.popup-content select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid var(--silver-lake-blue);
+    border-radius: 4px;
+    margin-bottom: 15px;
+    color: #fff;
+
+    color: var(--rich-black);
+}
+
+.popup-content select:hover,
+.popup-content select:focus {
+    background-color: #f0f0f0;
+    /* Lighter background color on hover */
+}
+
+.popup-content button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--oxford-blue);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.popup-content button:hover {
+    background-color: var(--yinmn-blue);
+}
+
+.popup-content #cgpaResult {
+    margin-top: 20px;
+    font-size: 18px;
+    color: var(--oxford-blue);
+    font-weight: bold;
 }
