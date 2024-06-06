@@ -59,7 +59,6 @@ function calculateSGPA() {
 
     if (gradePoint !== undefined) {
       totalGradePoints += gradePoint * credits[subject];
-      totalCredits += credits[subject];
     }
   }
 
