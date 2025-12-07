@@ -3,7 +3,18 @@ export interface SemesterData {
     totalCredits: number;
 }
 
-export const SemToCredits: SemesterData[] = [
+export const branches = [
+    "Computer Science Engineering (CSE)",
+    "Electronics & Communication (ECE)",
+    "Electrical Engineering (EE)",
+    "Mechanical Engineering (ME)",
+    "Civil Engineering (CE)",
+    "Information Technology (IT)",
+    "Artificial Intelligence & DS"
+];
+
+// Default data (currently based on CSE)
+const CSE_Credits: SemesterData[] = [
     {
         subjectToCredits: {
             "Engineering Mathematics-I": 4,
@@ -121,13 +132,31 @@ export const SemToCredits: SemesterData[] = [
             "Big Data Analytics": 3,
             "Big Data Analytics Lab": 2,
             "Software Testing & Validation Lab": 1,
-            Project: 7,
+            "Project": 7,
             "Social Outreach, Discipline & Extracurricular Activities": 0.5,
             "Disaster Management": 3,
         },
         totalCredits: 16.5,
     },
 ];
+
+export { CSE_Credits };
+export const ECE_Credits = CSE_Credits;
+export const EE_Credits = CSE_Credits;
+export const ME_Credits = CSE_Credits;
+export const CE_Credits = CSE_Credits;
+export const IT_Credits = CSE_Credits;
+export const AI_DS_Credits = CSE_Credits;
+
+export const BranchToCredits: Record<string, SemesterData[]> = {
+    "Computer Science Engineering (CSE)": CSE_Credits,
+    "Electronics & Communication (ECE)": ECE_Credits,
+    "Electrical Engineering (EE)": EE_Credits,
+    "Mechanical Engineering (ME)": ME_Credits,
+    "Civil Engineering (CE)": CE_Credits,
+    "Information Technology (IT)": IT_Credits,
+    "Artificial Intelligence & DS": AI_DS_Credits,
+};
 
 export const creditsTillSem: Record<number, number> = {
     1: 20.5,

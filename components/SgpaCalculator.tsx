@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { SemToCredits } from "../data/credits";
+import React, { useState, useRef, useEffect } from "react";
+import { BranchToCredits, branches } from "../data/credits";
 import gradePoints, { Grade } from "../data/gradePoints";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -12,8 +12,16 @@ import { BookOpen, Calculator, CheckCircle2 } from "lucide-react";
 
 const SgpaCalculator = () => {
     const [semester, setSemester] = useState<number>(0);
+    const [branch, setBranch] = useState<string>("Computer Science Engineering (CSE)");
     const [grades, setGrades] = useState<Record<string, string>>({});
     const [sgpa, setSgpa] = useState<number | null>(null);
+    const resultRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (sgpa !== null && resultRef.current) {
+            resultRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    }, [sgpa]);
 
     const handleSemesterChange = (value: string) => {
         setSemester(parseInt(value));
@@ -29,7 +37,7 @@ const SgpaCalculator = () => {
     };
 
     const calculateSGPA = () => {
-        const currentSemData = SemToCredits[semester];
+        const currentSemData = BranchToCredits[branch][semester];
         let totalGradePoints = 0;
         const { subjectToCredits, totalCredits } = currentSemData;
 
@@ -47,7 +55,7 @@ const SgpaCalculator = () => {
         setSgpa(calculatedSgpa);
     };
 
-    const currentSemSubjects = SemToCredits[semester].subjectToCredits;
+    const currentSemSubjects = BranchToCredits[branch][semester].subjectToCredits;
 
     return (
         <motion.div
@@ -68,7 +76,25 @@ const SgpaCalculator = () => {
                 <CardContent className="space-y-8">
                     <div className="space-y-4">
                         <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-slate-100 dark:bg-slate-800/50 p-4 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
-                            <div className="w-full md:w-1/2 space-y-2">
+                            <div className="w-full md:w-1/3 space-y-2 min-w-0">
+                                <Label htmlFor="branch" className="text-base font-bold text-slate-800 dark:text-slate-200">
+                                    Select Branch
+                                </Label>
+                                <Select value={branch} onValueChange={setBranch} disabled={true}>
+                                    <SelectTrigger id="branch" className="w-full bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-100 font-medium shadow-sm [&>span]:truncate">
+                                        <SelectValue className="truncate" placeholder="Select Branch" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {branches.map((b) => (
+                                            <SelectItem key={b} value={b}>
+                                                {b}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            <div className="w-full md:w-1/3 space-y-2">
                                 <Label htmlFor="semester" className="text-base font-bold text-slate-800 dark:text-slate-200">
                                     Select Semester
                                 </Label>
@@ -77,7 +103,7 @@ const SgpaCalculator = () => {
                                         <SelectValue placeholder="Select Semester" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {SemToCredits.map((_, index) => (
+                                        {BranchToCredits[branch].map((_, index) => (
                                             <SelectItem key={index} value={index.toString()}>
                                                 {index + 1}{index === 0 ? "st" : index === 1 ? "nd" : index === 2 ? "rd" : "th"} Semester
                                             </SelectItem>
@@ -87,7 +113,7 @@ const SgpaCalculator = () => {
                             </div>
                             <div className="flex items-center gap-2 bg-indigo-100 dark:bg-indigo-900/30 px-4 py-2 rounded-full text-indigo-800 dark:text-indigo-300 font-bold border border-indigo-200 dark:border-indigo-800">
                                 <BookOpen className="w-5 h-5" />
-                                <span>Total Credits: {SemToCredits[semester].totalCredits}</span>
+                                <span>Total Credits: {BranchToCredits[branch][semester].totalCredits}</span>
                             </div>
                         </div>
 
@@ -142,6 +168,7 @@ const SgpaCalculator = () => {
                         <AnimatePresence>
                             {sgpa !== null && (
                                 <motion.div
+                                    ref={resultRef}
                                     initial={{ opacity: 0, scale: 0.9, y: 10 }}
                                     animate={{ opacity: 1, scale: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
